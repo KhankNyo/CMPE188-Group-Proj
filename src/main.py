@@ -10,6 +10,8 @@ def preprocess(data):
     data = data.fillna({"education": "tertiary"})
     data = data.fillna({"contact": "telephone"})
     data = data.fillna({"poutcome": "other"})
+    data = pd.get_dummies(data, columns=["job", "marital", "education", "contact", "poutcome"], dtype=int)
+    print(f"{data}")
     return data
 
 
@@ -17,7 +19,6 @@ def main():
     model()
     data = read_data("dataset/07_bank_marketing_train.csv")
     data = preprocess(data)
-    print(f"{data}")
     print("Hello, world\n")
 
 if __name__=="__main__":
